@@ -34,38 +34,10 @@ internal class Program
         File.WriteAllText("out.txt", OutText);
         Console.WriteLine(OutText);
 
-        var StreetReg = new Regex(@"^(?:[уУ][лЛ]\.\s+)?(\w+)\,?\s+(?:[дД]\.\s+)?(\d+(?:[\-\/]\d+)?)$");
-        var Street = Console.ReadLine();
-        if (StreetReg.IsMatch(Street))
-        {
-            var Groups = StreetReg.Split(Street);
-            Console.WriteLine($"Улица: {Groups[1]}\nДом: {Groups[2]}");
-
-        }
-        else
-        {
-            Console.WriteLine("НеTy");
-        }
-        Console.WriteLine("=======================================");
-
-
-        string Task1 = "Добро пожаловать в наш магазин, вот наши цены: 1 кг. яблоки - 90 руб., 2 кг. апельсины - 130 руб. Также в ассортименте орехи в следующей фасовке: 0.5 кг. миндаль - 500 руб";
-        var Task1Reg = new Regex(@"((?:\d+)?\.?\d+)?\sкг\.\s(\w+)\s\-\s(\d+)\sруб\.?");
-        var RawProducts = Task1Reg.Matches(Task1);
-        foreach (Match RawProduct in RawProducts)
-        {
-            foreach (Match ProductString in Task1Reg.Matches(RawProduct.Value))
-            {
-                var SplitProduct = ProductString.Groups;
-                Console.WriteLine($"{SplitProduct[2]} - {Convert.ToDouble(SplitProduct[3].Value) / Convert.ToDouble(SplitProduct[1].Value.Replace('.', ','))} руб/кг");
-            }
-
-        }
-        Console.WriteLine("=======================================");
-
-
-
-
+        var Text3 = File.ReadAllText("Лабораторная работа 5 - testData.xml");
+        var point5 =new Regex (@"^[A-ЯЁ]|[а-яё]+[\s{3}]+[0-9{2}]+[лет]|[года]|[год]$");
+        var values = point5.Matches(Text3);
+        Console.WriteLine(values);
     }
 }
     
